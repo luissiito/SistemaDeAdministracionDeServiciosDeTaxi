@@ -1,15 +1,17 @@
+const NI = 'No Informado'
+
 export default class Vehiculo{
     constructor(){
-        this.anio = 0
-        this.color = ''
-        this.marca = ''
-        this.modelo = ''
-        this.numeroDeChasis = ''
-        this.numeroDeMotor = ''
-        this.numeroDeVin = ''   
-        this.placaPatenteUnica = ''     
+        this.anio = NI
+        this.color = NI
+        this.marca = NI
+        this.modelo = NI
+        this.numeroDeChasis = NI
+        this.numeroDeMotor = NI
+        this.numeroDeVin = NI   
+        this.placaPatenteUnica = NI     
         this.propietario = {} // PERSONA NATURAL O PERSONA JURÍDICA (EMPRESA)
-        this.tipoDeVehiculo = ''
+        this.tipoDeVehiculo = NI
     }
     getAnio(){return this.anio}
     getColor(){return this.color}

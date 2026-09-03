@@ -1,0 +1,219 @@
+
+        :root {
+            --azul-claro: #eef5fc;
+            --azul-cedula: #0f2c59;
+            --texto-oscuro: #1a1a1a;
+            --texto-secundario: #555;
+            --rojo-chile: #dad1d4;
+        }
+
+    
+        
+        h2 {
+            color: var(--azul-cedula);
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor de la Cédula */
+        .cedula-card {
+            width: 450px;
+            height: 280px;
+            background: linear-gradient(135deg, #eef5fc 0%, #dbe9f6 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            padding: 15px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #b0cada;
+            text-transform: uppercase;
+        }
+
+        /* Fondo decorativo simulando seguridad */
+        .cedula-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(218, 14, 25, 0.03) 0%, rgba(15, 44, 89, 0.05) 70%);
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        /* Encabezado */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid #0f2c59;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .header-left h1 {
+            font-size: 11px;
+            margin: 0;
+            color: #c82333;
+            letter-spacing: 0.5px;
+        }
+
+        .header-left h2 {
+            font-size: 13px;
+            margin: 2px 0 0 0;
+            color: var(--azul-cedula);
+            font-weight: bold;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 9px;
+            color: var(--texto-secundario);
+            font-weight: bold;
+        }
+
+        /* Cuerpo principal */
+        .main-content {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Foto de perfil */
+        .photo-container {
+            width: 105px;
+            height: 135px;
+            background-color: #e2e8f0;
+            border: 2px solid #a0aec0;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder {
+            font-size: 10px;
+            color: #718096;
+            text-align: center;
+            padding: 5px;
+        }
+
+        /* Datos */
+        .info-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px 10px;
+        }
+
+        .info-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-group.full-width {
+            grid-column: span 2;
+        }
+
+        .label {
+            font-size: 8px;
+            color: #666;
+            font-weight: bold;
+            margin-bottom: 1px;
+        }
+
+        .value {
+            font-size: 11px;
+            color: var(--texto-oscuro);
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .value-rut {
+            font-size: 15px;
+            color: var(--azul-cedula);
+            font-weight: 800;
+        }
+
+        /* Pie de la cédula y firma */
+        .footer-content {
+            position: absolute;
+            bottom: 12px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .signature-section {
+            width: 130px;
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 1px dashed #888;
+            margin-top: 25px;
+            font-size: 8px;
+            color: #555;
+            padding-top: 2px;
+        }
+
+        .document-number {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            font-weight: bold;
+            color: #900;
+            letter-spacing: 1px;
+        }
+
+        /* Formulario de control */
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-top: 30px;
+            width: 450px;
+            box-sizing: border-box;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: var(--texto-secundario);
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+        }

@@ -1,13 +1,11 @@
 
-import Conductor from "./server/src/models/Conductor.js";
+import SistemaDeAdministracionLinea120 from "./server/src/models/classes/SistemaDeAdministracionLinea120.js";
+import FormularioHTMLDeCedulaDeIdentidad from "./client/views/js/clases/FormularioHTMLDeCedulaDeIdentidad.js";
+export const menuPrincipal = document.createElement('main')
+const formularioHTMLDeCedulaDeIdentidad = new FormularioHTMLDeCedulaDeIdentidad()
+const sistemaDeAdministracionLinea120 = new SistemaDeAdministracionLinea120()
 
-const conductor = new Conductor()
+document.querySelector('body').appendChild(menuPrincipal)
+menuPrincipal.appendChild(formularioHTMLDeCedulaDeIdentidad.getForm())
 
-conductor.setPrimerNombre('Luis')
-conductor.setSegundoNombre('Fernando')
-conductor.setApellidoMaterno('González')
-conductor.setApellidoPaterno('Olmedo')
-conductor.setNombreCompleto()
-
-console.log(conductor.getNombreCompleto())
-console.log(conductor.fotoDeConductor)
+sistemaDeAdministracionLinea120.iniciar()

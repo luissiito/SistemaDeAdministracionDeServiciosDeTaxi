@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <title>Simulador de Cédula de Identidad Chilena</title>
+   
+</head>
+<body>
+
+    <h2>Cédula de Identidad Chilena</h2>
+       <!-- VISTA DE LA CREDENCIAL -->
+    <div class="cardCedulaDeIdentidad">
+        <div class="header">
+            <div class="header-left">
+                <h1>REPÚBLICA DE CHILE</h1>
+                <h2>SERVICIO DE REGISTRO CIVIL E IDENTIFICACIÓN</h2>
+            </div>
+            <div class="header-right">
+                CÉDULA DE IDENTIDAD
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Foto -->
+            <div class="photo-container" id="photoContainer">
+                <div class="photo-placeholder" id="placeholderText">Sin Foto</div>
+                <img id="cardPhoto" src="" alt="Foto" style="display: none;">
+            </div>
+
+            <!-- Datos -->
+            <div class="info-container">
+                <div class="info-group full-width">
+                    <span class="label">APELLIDOS</span>
+                    <span class="value" id="cardApellidos">PÉREZ COTAPOS</span>
+                </div>
+                <div class="info-group full-width">
+                    <span class="label">NOMBRES</span>
+                    <span class="value" id="cardNombres">JUAN CARLOS</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">NACIONALIDAD</span>
+                    <span class="value" id="cardNacionalidad">CHILENA</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">SEXO</span>
+                    <span class="value" id="cardSexo">M</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">FECHA DE NACIMIENTO</span>
+                    <span class="value" id="cardNacimiento">15 ENE 1990</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">NÚMERO DOCUMENTO</span>
+                    <span class="value-rut" id="cardRut">12.345.678-K</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">FECHA DE EMISIÓN</span>
+                    <span class="value" id="cardEmision">10 MAR 2024</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">FECHA DE VENCIMIENTO</span>
+                    <span class="value" id="cardVencimiento">10 MAR 2034</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-content">
+            <div class="signature-section">
+                <div class="signature-line">FIRMA DEL TITULAR</div>
+            </div>
+            <div class="document-number" id="cardDocNum">A12345678</div>
+        </div>
+    </div>
+
+  
+</body>
+</html>
+

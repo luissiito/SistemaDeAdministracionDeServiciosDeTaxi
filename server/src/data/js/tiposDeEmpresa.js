@@ -1,0 +1,6 @@
+export const tiposDeEmpresa = [
+    {nombre:'EMPRESA INDIVIDUAL DE RESPONSABILIDAD LIMITADA'},
+    {nombre:'SOCIEDAD DE RESPONSABILIDAD LIMITADA'},
+    {nombre:'EMPRESA DE UN DIA (LEY 20.659)'},
+    {nombre:'SOCIEDAD ANÓNIMA O SOCIEDAD POR ACCIONES (SPA)'}
+]
