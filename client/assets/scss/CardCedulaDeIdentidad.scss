@@ -116,6 +116,10 @@ $naranjo: orange;
     .info-group#infoGroupRut{
         display: block;
     }
+    .info-group#infoGroupRut .label{
+        font-size: 1.2em;
+        font-weight: bolder;
+    }
     .info-group .cardRut{
         color: $azul-cedula;
         font-size: 1.4em;

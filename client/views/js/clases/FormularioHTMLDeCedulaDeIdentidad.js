@@ -1,5 +1,6 @@
 import { getVistaHTMLDeCedulaDeIdentidad } from '../vistaHTMLDeCedulaDeIdentidad.js'
-import CedulaDeIdentidad from '../../../../server/src/models/classes/CedulaDeIdentidad.js'
+import { setAttributes, formatearRutEnTiempoReal, validarRutChileno } from '../../../assets/js/funcionesGlobales.js'
+import CedulaDeIdentidad from '../../../assets/js/models/CedulaDeIdentidad.js'
 
 export default class FormularioHTMLDeCedulaDeIdentidad {
     constructor() {
@@ -91,8 +92,21 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         })
     }
 
-    añadirEventoBlurAlInputRut() {
-        this.inputRut.addEventListener('blur', () => {
+    añadirEventosAlInputRut() {
+        this.inputRut.addEventListener('input', () => {
+            formatearRutEnTiempoReal(this.inputRut)
+        })
+        this.inputRut.addEventListener('change', () => {
+            const rutLimpio = this.inputRut.value.replace(/[^0-9kK]/g, '')
+            if (rutLimpio.length > 1) {
+                const esValido = validarRutChileno(rutLimpio)
+                if (!esValido) {
+                    alert('El RUT ingresado no es válido. Por favor, verifíquelo.')
+                    this.inputRut.style.borderColor = 'red'
+                } else {
+                    this.inputRut.style.borderColor = 'green'
+                }
+            }
         })
     }
 
@@ -155,43 +169,49 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         this.divPrimerNombre.setAttribute('class', 'form-group')
         this.labelPrimerNombre.setAttribute('for', 'inputPrimerNombre')
         this.labelPrimerNombre.textContent = 'Primer Nombre'
-        this.setAttributes(this.inputPrimerNombre, atributos)
+        setAttributes(this.inputPrimerNombre, atributos)
     }
     prepararFormGroupSegundoNombre() {
         const atributos = { id: 'inputSegundoNombre', type: 'text', required: '' }
         this.divSegundoNombre.setAttribute('class', 'form-group')
         this.labelSegundoNombre.setAttribute('for', 'inputSegundoNombre')
         this.labelSegundoNombre.textContent = 'Segundo Nombre'
-        this.setAttributes(this.inputSegundoNombre, atributos)
+        setAttributes(this.inputSegundoNombre, atributos)
     }
     prepararFormGroupPrimerApellido() {
         const atributos = { id: 'inputPrimerApellido', type: 'text', required: '' }
         this.divPrimerApellido.setAttribute('class', 'form-group')
         this.labelPrimerApellido.setAttribute('for', 'inputPrimerApellido')
         this.labelPrimerApellido.textContent = 'Primer Apellido'
-        this.setAttributes(this.inputPrimerApellido, atributos)
+        setAttributes(this.inputPrimerApellido, atributos)
     }
     prepararFormGroupSegundoApellido() {
         const atributosInputPrimerApellido = { id: 'inputSegundoApellido', type: 'text', required: '' }
         this.divSegundoApellido.setAttribute('class', 'form-group')
         this.labelSegundoApellido.setAttribute('for', 'inputSegundoApellido')
         this.labelSegundoApellido.textContent = 'Segundo Apellido'
-        this.setAttributes(this.inputSegundoApellido, atributosInputPrimerApellido)
+        setAttributes(this.inputSegundoApellido, atributosInputPrimerApellido)
     }
     prepararFormGroupRut() {
-        const atributosInputRut = { id: 'inputRut', type: 'number', required: '' }
+        const atributosInputRut = {
+            id: 'inputRut',
+            type: 'text',
+            required: '',
+            placeholder: '12.345.678-K',
+            maxlength: '12' // Evita que escriban caracteres de más
+        }
         this.divRut.setAttribute('class', 'form-group')
         this.labelRut.setAttribute('for', 'inputRut')
         this.labelRut.textContent = 'Rut'
-        this.setAttributes(this.inputRut, atributosInputRut)
-        this.añadirEventoBlurAlInputRut()
+        this.añadirEventosAlInputRut()
+        setAttributes(this.inputRut, atributosInputRut)
     }
     prepararFormGroupNumeroDeDocumento() {
         const atributosInputNumeroDeDocumento = { id: 'inputNumeroDeDocumento', type: 'text', required: '' }
         this.divNumeroDeDocumento.setAttribute('class', 'form-group')
         this.labelNumeroDeDocumento.setAttribute('for', 'inputNumeroDeDocumento')
         this.labelNumeroDeDocumento.textContent = 'Número de Documento'
-        this.setAttributes(this.inputNumeroDeDocumento, atributosInputNumeroDeDocumento)
+        setAttributes(this.inputNumeroDeDocumento, atributosInputNumeroDeDocumento)
     }
     prepararFormGroupNacionalidad() {
         const atributosInputNacionalidad = { id: 'inputNacionalidad', type: 'text', disabled: '' }
@@ -199,37 +219,37 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         this.labelNacionalidad.setAttribute('for', 'inputNacionalidad')
         this.labelNacionalidad.textContent = 'Nacionalidad'
         this.inputNacionalidad.value = 'CHILENA'
-        this.setAttributes(this.inputNacionalidad, atributosInputNacionalidad)
+        setAttributes(this.inputNacionalidad, atributosInputNacionalidad)
     }
     prepararFormGroupSexo() {
         const atributosSelectSexo = { id: 'selectSexo', required: '' }
         this.divSexo.setAttribute('class', 'form-group')
         this.labelSexo.setAttribute('for', 'SelectSexo')
         this.labelSexo.textContent = 'Sexo'
-        this.setAttributes(this.selectSexo, atributosSelectSexo)
         this.fillSelectSexo()
+        setAttributes(this.selectSexo, atributosSelectSexo)
     }
     prepararFormGroupFechaDeNacimiento() {
         const atributosInputFechaDeNacimiento = { id: 'inputFechaDeNacimiento', type: 'text', readonly: true }
         this.divFechaDeNacimiento.setAttribute('class', 'form-group')
         this.labelFechaDeNacimiento.setAttribute('for', 'inputFechaDeNacimiento')
         this.labelFechaDeNacimiento.textContent = 'Fecha de Nacimiento'
-        this.setAttributes(this.inputFechaDeNacimiento, atributosInputFechaDeNacimiento)
         this.añadirEventoChangeAlInputFechaDeNacimiento()
+        setAttributes(this.inputFechaDeNacimiento, atributosInputFechaDeNacimiento)
     }
     prepararFormGroupFechaDeEmision() {
         const atributosInputFechaDeEmision = { id: 'inputFechaDeEmision', type: 'text', readonly: true }
         this.divFechaDeEmision.setAttribute('class', 'form-group')
         this.labelFechaDeEmision.setAttribute('for', 'inputFechaDeEmision')
         this.labelFechaDeEmision.textContent = 'Fecha de Emisión'
-        this.setAttributes(this.inputFechaDeEmision, atributosInputFechaDeEmision)
+        setAttributes(this.inputFechaDeEmision, atributosInputFechaDeEmision)
     }
     prepararFormGroupFechaDeVencimiento() {
         const atributosInputFechaDeVencimiento = { id: 'inputFechaDeVencimiento', type: 'text', readonly: true }
         this.divFechaDeVencimiento.setAttribute('class', 'form-group')
         this.labelFechaDeVencimiento.setAttribute('for', 'inputFechaDeVencimiento')
         this.labelFechaDeVencimiento.textContent = 'Fecha de Vencimiento'
-        this.setAttributes(this.inputFechaDeVencimiento, atributosInputFechaDeVencimiento)
+        setAttributes(this.inputFechaDeVencimiento, atributosInputFechaDeVencimiento)
     }
     prepararFormGroupBotonEnviar() {
         this.divBotonEnviar.setAttribute('class', 'form-group')
@@ -252,13 +272,6 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
             this.selectSexo.appendChild(option)
         })
     }
-
-    setAttributes(element, attributes) {
-        Object.entries(attributes).forEach(([key, value]) => {
-            element.setAttribute(key, value);
-        });
-    }
-
     setInformacionALaVistaDeCedulaDeIdentidad() {
         document.querySelector('#cardNombres').textContent = `${this.cedulaDeIdentidad.primerNombre} ${this.cedulaDeIdentidad.segundoNombre}`
         document.querySelector('#cardApellidos').textContent = `${this.cedulaDeIdentidad.primerApellido} ${this.cedulaDeIdentidad.segundoApellido}`

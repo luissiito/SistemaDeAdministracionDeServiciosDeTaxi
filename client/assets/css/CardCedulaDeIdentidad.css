@@ -107,6 +107,10 @@
 .cardCedulaDeIdentidad .info-group#infoGroupRut {
   display: block;
 }
+.cardCedulaDeIdentidad .info-group#infoGroupRut .label {
+  font-size: 1.2em;
+  font-weight: bolder;
+}
 .cardCedulaDeIdentidad .info-group .cardRut {
   color: #0f2c59;
   font-size: 1.4em;
