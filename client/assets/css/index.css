@@ -2,18 +2,19 @@
 @import url('./FormularioHTMLDeCedulaDeIdentidad.css');
 
     body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, Arial, sans-serif;
             background-color: #f0f2f5;
-            display: flex;
+            display: block;
             flex-direction: column;
             align-items: center;
             padding: 0;
             margin: 0;
+            main{
+                display:block;
+                margin: 0 auto;
+            }
         }
 
         
 
-        main{
-            display:inline-block
-        }
         

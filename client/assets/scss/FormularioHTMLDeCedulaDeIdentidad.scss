@@ -1,36 +1,75 @@
+@use 'mixins';
+
+$alturaInputs: 2em;
 
 .FormularioHTMLDeCedulaDeIdentidad {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1em;
-    padding: 1em;
+    padding: 1.5em;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 50vw;
 
-    & .form-group {
+    .form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 1em;
+    }
+    .form-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0.4em;
         margin-bottom: 1em;
+        font-weight: bold;
+        color: GREY;
     }
-    & .form-group label,input[type="text"],select {
-        padding: 0.3em;
+    
+    .form-group input {
+        color:blue;
+        border-radius: 6px;
     }
-    & .form-group input[type="text"],select {
-        border-radius: 3px;
+    
+    .form-group input:hover:not(:disabled) {
+        border-color: rgb(65, 169, 201);
+        border-width: 2px;
+    }
+    
+    .form-group input[type="number"] {
+        appearance: textfield;
+        height: $alturaInputs;
+    }
+    
+    .form-group input[type="text"],
+    select {
+        height: $alturaInputs;
         text-transform: uppercase;
     }
-    & .form-group input[type="text"]:hover, input[type="date"]:hover, select:hover {
-        background-color: rgb(148, 75, 115);
-        color: white;
+    
+    .form-group input[type="text"]:focus,
+    select:focus {
+        border-color: rgb(65, 169, 201);
+        border-width: 2px;
     }
-    & .form-group .BotonEnviar {
-        grid-column: span 2;
+    
+    .form-group .BotonEnviar {
         font-weight: bold;
+        grid-column: span 2;
+        justify-self: center;
         margin-bottom: 0.5em;
         padding: 0.5em;
         width: 80%;
-        justify-self: center;
     }
+    
+    .form-group .BotonEnviar:not(:disabled) {
+        background-color: #1157a7;
+        color: white;
+    }
+    
+    .form-group .BotonEnviar:not(:disabled):hover {
+        background-color: #062952;
+        cursor: pointer;
+    }
+    
+    @include mixins.pantallas1024x768;
 }

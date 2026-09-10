@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/index.css">
-    <title>Simulador de Cédula de Identidad Chilena</title>
-   
+    <title>Document</title>
 </head>
-<body>
 
-    <h2>Cédula de Identidad Chilena</h2>
-       <!-- VISTA DE LA CREDENCIAL -->
+<body>
+    <!-- VISTA DE LA CREDENCIAL -->
     <div class="cardCedulaDeIdentidad">
         <div class="header">
             <div class="header-left">
@@ -25,56 +23,61 @@
         <div class="main-content">
             <!-- Foto -->
             <div class="photo-container" id="photoContainer">
-                <div class="photo-placeholder" id="placeholderText">Sin Foto</div>
-                <img id="cardPhoto" src="" alt="Foto" style="display: none;">
+                <div class="photoPersonWrapper">
+                    <img id="cardPhoto" src="./assets/images/noImageAvailable.png" alt="Foto" style="display: true;">
+                </div>
             </div>
 
             <!-- Datos -->
             <div class="info-container">
                 <div class="info-group full-width">
                     <span class="label">APELLIDOS</span>
-                    <span class="value" id="cardApellidos">PÉREZ COTAPOS</span>
+                    <span class="value" id="cardApellidos">${cedulaDeIdentidad.primerApellido}
+                        ${cedulaDeIdentidad.segundoApellido}</span>
                 </div>
                 <div class="info-group full-width">
                     <span class="label">NOMBRES</span>
-                    <span class="value" id="cardNombres">JUAN CARLOS</span>
+                    <span class="value" id="cardNombres">${cedulaDeIdentidad.primerNombre}
+                        ${cedulaDeIdentidad.segundoNombre}</span>
                 </div>
                 <div class="info-group">
                     <span class="label">NACIONALIDAD</span>
-                    <span class="value" id="cardNacionalidad">CHILENA</span>
+                    <span class="value" id="cardNacionalidad">${cedulaDeIdentidad.nacionalidad}</span>
                 </div>
                 <div class="info-group">
                     <span class="label">SEXO</span>
-                    <span class="value" id="cardSexo">M</span>
+                    <span class="value" id="cardSexo">${cedulaDeIdentidad.sexo}</span>
                 </div>
                 <div class="info-group">
                     <span class="label">FECHA DE NACIMIENTO</span>
-                    <span class="value" id="cardNacimiento">15 ENE 1990</span>
+                    <span class="value" id="cardNacimiento">${cedulaDeIdentidad.fechaDeNacimiento}</span>
                 </div>
                 <div class="info-group">
                     <span class="label">NÚMERO DOCUMENTO</span>
-                    <span class="value-rut" id="cardRut">12.345.678-K</span>
+                    <span class="value-numeroDeDocumento"
+                        id="cardNumeroDeDocumento">${cedulaDeIdentidad.getNumeroDeDocumento()}</span>
                 </div>
                 <div class="info-group">
                     <span class="label">FECHA DE EMISIÓN</span>
-                    <span class="value" id="cardEmision">10 MAR 2024</span>
+                    <span class="value" id="cardEmision">${cedulaDeIdentidad.fechaDeEmision}</span>
                 </div>
                 <div class="info-group">
                     <span class="label">FECHA DE VENCIMIENTO</span>
-                    <span class="value" id="cardVencimiento">10 MAR 2034</span>
+                    <span class="value" id="cardVencimiento">${cedulaDeIdentidad.fechaDeVencimiento}</span>
+                </div>
+                <div class="info-group">
+                    <div class="cardRut">Rut: ${cedulaDeIdentidad.rut}</div>
                 </div>
             </div>
-        </div>
+        </div></div>
 
         <div class="footer-content">
             <div class="signature-section">
                 <div class="signature-line">FIRMA DEL TITULAR</div>
             </div>
-            <div class="document-number" id="cardDocNum">A12345678</div>
+            <div class="document-number" id="cardDocNum">${cedulaDeIdentidad.id}</div>
         </div>
     </div>
-
-  
 </body>
-</html>
 
+</html>

@@ -89,13 +89,6 @@
 .cardCedulaDeIdentidad .photoPersonWrapper {
   position: relative;
   display: block;
-}
-.cardCedulaDeIdentidad .photoPersonWrapper .cardRut {
-  bottom: 0.1em;
-  color: green;
-  font-size: 1.1em;
-  padding: 0.2em;
-  position: absolute;
   text-align: center;
 }
 .cardCedulaDeIdentidad {
@@ -111,12 +104,22 @@
   display: flex;
   flex-direction: column;
 }
+.cardCedulaDeIdentidad .info-group#infoGroupRut {
+  display: block;
+}
+.cardCedulaDeIdentidad .info-group .cardRut {
+  color: #0f2c59;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
 .cardCedulaDeIdentidad .info-group.full-width {
   grid-column: span 2;
 }
 .cardCedulaDeIdentidad .label {
   font-size: 0.9em;
-  color: #666;
+  color: #552b03;
   font-weight: light;
   margin-bottom: 2px;
 }

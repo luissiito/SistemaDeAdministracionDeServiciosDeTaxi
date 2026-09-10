@@ -98,13 +98,6 @@ $naranjo: orange;
     .photoPersonWrapper {
         position: relative;
         display: block;
-    }
-    .photoPersonWrapper .cardRut {
-        bottom: .1em;
-        color: green;
-        font-size: 1.1em;
-        padding: .2em;
-        position: absolute;
         text-align: center;
     }
 
@@ -120,6 +113,16 @@ $naranjo: orange;
         display: flex;
         flex-direction: column;
     }
+    .info-group#infoGroupRut{
+        display: block;
+    }
+    .info-group .cardRut{
+        color: $azul-cedula;
+        font-size: 1.4em;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+    }
 
     .info-group.full-width {
         grid-column: span 2;
@@ -127,7 +130,7 @@ $naranjo: orange;
 
     .label {
         font-size: 0.9em;
-        color: #666;
+        color: #552b03;
         font-weight: light;
         margin-bottom: 2px;
     }

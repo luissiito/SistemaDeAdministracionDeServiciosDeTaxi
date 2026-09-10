@@ -1,4 +1,3 @@
-import { menuPrincipal } from '../../../../main.js'
 import { getVistaHTMLDeCedulaDeIdentidad } from '../vistaHTMLDeCedulaDeIdentidad.js'
 import CedulaDeIdentidad from '../../../../server/src/models/classes/CedulaDeIdentidad.js'
 
@@ -83,10 +82,20 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
             this.cedulaDeIdentidad.fechaDeEmision = this.inputFechaDeEmision.value
             this.cedulaDeIdentidad.fechaDeVencimiento = this.inputFechaDeVencimiento.value
             this.form.remove()
-            menuPrincipal.innerHTML = getVistaHTMLDeCedulaDeIdentidad(this.cedulaDeIdentidad)
-
+            if (!this.validarSiTodosLosCamposEstanLlenos()) {
+                window.location.reload();
+            } else {
+                document.querySelector('main').innerHTML = getVistaHTMLDeCedulaDeIdentidad()
+                this.setInformacionALaVistaDeCedulaDeIdentidad()
+            }
         })
     }
+
+    añadirEventoBlurAlInputRut() {
+        this.inputRut.addEventListener('blur', () => {
+        })
+    }
+
     añadirEventoChangeAlInputFechaDeNacimiento() {
         this.inputFechaDeNacimiento.addEventListener('change', () => {
             const isoValue = this.inputFechaDeNacimiento.value; // Get the value in ISO format (YYYY-MM-DD)
@@ -96,6 +105,16 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
             const formattedDate = `${day} FEB ${year}`; // Reordered to DD-MM-YYYY
             this.inputFechaDeNacimiento.textContent = formattedDate;
             console.log(formattedDate); // Output the formatted date to the console
+        });
+    }
+    añadirEventoChangeAlInputFechaDeNacimiento() {
+        this.inputFechaDeNacimiento.addEventListener('change', () => {
+            const isoValue = this.inputFechaDeNacimiento.value; // Get the value in ISO format (YYYY-MM-DD)
+            if (!isoValue) return;
+
+            const [year, month, day] = isoValue.split('-');
+            const formattedDate = `${day} FEB ${year}`; // Reordered to DD-MM-YYYY
+            this.inputFechaDeNacimiento.textContent = formattedDate;
         });
     }
 
@@ -116,6 +135,14 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         this.prepararFormGroupFechaDeVencimiento()
         this.prepararFormGroupBotonEnviar()
     }
+
+    mostrarElRutConGuion() {
+        const rut = this.inputRut.value
+        const array = rut.split('')
+        const rutConGuion = `${array.slice(0, -1).join('')}-${array.slice(-1)}`
+        this.inputRut.value = rutConGuion
+    }
+
     prepararForm() {
         this.form.setAttribute('class', 'FormularioHTMLDeCedulaDeIdentidad')
     }
@@ -152,11 +179,12 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         this.setAttributes(this.inputSegundoApellido, atributosInputPrimerApellido)
     }
     prepararFormGroupRut() {
-        const atributosInputRut = { id: 'inputRut', type: 'text', required: '' }
+        const atributosInputRut = { id: 'inputRut', type: 'number', required: '' }
         this.divRut.setAttribute('class', 'form-group')
         this.labelRut.setAttribute('for', 'inputRut')
         this.labelRut.textContent = 'Rut'
         this.setAttributes(this.inputRut, atributosInputRut)
+        this.añadirEventoBlurAlInputRut()
     }
     prepararFormGroupNumeroDeDocumento() {
         const atributosInputNumeroDeDocumento = { id: 'inputNumeroDeDocumento', type: 'text', required: '' }
@@ -182,7 +210,7 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         this.fillSelectSexo()
     }
     prepararFormGroupFechaDeNacimiento() {
-        const atributosInputFechaDeNacimiento = { id: 'inputFechaDeNacimiento', type: 'text', required: '' }
+        const atributosInputFechaDeNacimiento = { id: 'inputFechaDeNacimiento', type: 'text', readonly: true }
         this.divFechaDeNacimiento.setAttribute('class', 'form-group')
         this.labelFechaDeNacimiento.setAttribute('for', 'inputFechaDeNacimiento')
         this.labelFechaDeNacimiento.textContent = 'Fecha de Nacimiento'
@@ -190,14 +218,14 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         this.añadirEventoChangeAlInputFechaDeNacimiento()
     }
     prepararFormGroupFechaDeEmision() {
-        const atributosInputFechaDeEmision = { id: 'inputFechaDeEmision', type: 'text', required: '' }
+        const atributosInputFechaDeEmision = { id: 'inputFechaDeEmision', type: 'text', readonly: true }
         this.divFechaDeEmision.setAttribute('class', 'form-group')
         this.labelFechaDeEmision.setAttribute('for', 'inputFechaDeEmision')
         this.labelFechaDeEmision.textContent = 'Fecha de Emisión'
         this.setAttributes(this.inputFechaDeEmision, atributosInputFechaDeEmision)
     }
     prepararFormGroupFechaDeVencimiento() {
-        const atributosInputFechaDeVencimiento = { id: 'inputFechaDeVencimiento', type: 'text', required: '' }
+        const atributosInputFechaDeVencimiento = { id: 'inputFechaDeVencimiento', type: 'text', readonly: true }
         this.divFechaDeVencimiento.setAttribute('class', 'form-group')
         this.labelFechaDeVencimiento.setAttribute('for', 'inputFechaDeVencimiento')
         this.labelFechaDeVencimiento.textContent = 'Fecha de Vencimiento'
@@ -229,5 +257,32 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
         Object.entries(attributes).forEach(([key, value]) => {
             element.setAttribute(key, value);
         });
+    }
+
+    setInformacionALaVistaDeCedulaDeIdentidad() {
+        document.querySelector('#cardNombres').textContent = `${this.cedulaDeIdentidad.primerNombre} ${this.cedulaDeIdentidad.segundoNombre}`
+        document.querySelector('#cardApellidos').textContent = `${this.cedulaDeIdentidad.primerApellido} ${this.cedulaDeIdentidad.segundoApellido}`
+        document.querySelector('#cardNacionalidad').textContent = `${this.cedulaDeIdentidad.nacionalidad}`
+        document.querySelector('#cardSexo').textContent = `${this.cedulaDeIdentidad.sexo}`
+        document.querySelector('#cardNumeroDeDocumento').textContent = `${this.cedulaDeIdentidad.numeroDeDocumento}`
+        document.querySelector('#cardNacimiento').textContent = `${this.cedulaDeIdentidad.fechaDeNacimiento}`
+        document.querySelector('#cardEmision').textContent = `${this.cedulaDeIdentidad.fechaDeEmision}`
+        document.querySelector('#cardVencimiento').textContent = `${this.cedulaDeIdentidad.fechaDeVencimiento}`
+        document.querySelector('#cardRut').textContent = `${this.cedulaDeIdentidad.rut}`
+    }
+
+    validarSiTodosLosCamposEstanLlenos() {
+        const campos = [
+            this.inputPrimerNombre,
+            this.inputSegundoNombre,
+            this.inputPrimerApellido,
+            this.inputSegundoApellido,
+            this.inputRut,
+            this.inputNumeroDeDocumento,
+            this.inputFechaDeNacimiento,
+            this.inputFechaDeEmision,
+            this.inputFechaDeVencimiento
+        ]
+        return campos.every(campo => campo.value.trim() !== '')
     }
 }
