@@ -118,20 +118,9 @@ export default class FormularioHTMLDeCedulaDeIdentidad {
             const [year, month, day] = isoValue.split('-');
             const formattedDate = `${day} FEB ${year}`; // Reordered to DD-MM-YYYY
             this.inputFechaDeNacimiento.textContent = formattedDate;
-            console.log(formattedDate); // Output the formatted date to the console
         });
     }
-    añadirEventoChangeAlInputFechaDeNacimiento() {
-        this.inputFechaDeNacimiento.addEventListener('change', () => {
-            const isoValue = this.inputFechaDeNacimiento.value; // Get the value in ISO format (YYYY-MM-DD)
-            if (!isoValue) return;
-
-            const [year, month, day] = isoValue.split('-');
-            const formattedDate = `${day} FEB ${year}`; // Reordered to DD-MM-YYYY
-            this.inputFechaDeNacimiento.textContent = formattedDate;
-        });
-    }
-
+    
     crearFormulario() {
         this.appendAllElements()
         this.prepararDivFormGrid()

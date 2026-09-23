@@ -3,13 +3,13 @@
             element.setAttribute(key, value);
         });
     }
-    
-export function formatearRutEnTiempoReal() {
+
+export function formatearRutEnTiempoReal(inputRut) {
     // Limpia el valor dejando solo números y la letra K (mayúscula o minúscula)
-    let valor = document.querySelector('#inputRut').value.replace(/[^0-9kK]/g, '').toUpperCase()
+    let valor = inputRut.value.replace(/[^0-9kK]/g, '').toUpperCase()
     
     if (valor.length === 0) {
-        document.querySelector('#inputRut').value = ''
+        inputRut.value = ''
         return
     }
 
@@ -19,7 +19,7 @@ export function formatearRutEnTiempoReal() {
 
     // Si solo hay un caracter, es el inicio del cuerpo
     if (valor.length === 1) {
-        document.querySelector('#inputRut').value = dv
+        inputRut.value = dv
         return
     }
 
@@ -32,7 +32,7 @@ export function formatearRutEnTiempoReal() {
     cuerpoFormateado = cuerpo + cuerpoFormateado
 
     // Une el cuerpo formateado con el guion y el dígito verificador
-    document.querySelector('#inputRut').value = `${cuerpoFormateado}-${dv}`
+    inputRut.value = `${cuerpoFormateado}-${dv}`
 }
 
 export function validarRutChileno(rutCompleto) {

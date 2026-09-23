@@ -19,7 +19,7 @@ export const getVistaHTMLDeCedulaDeIdentidad = () => {
             <!-- Foto -->
             <div class="photo-container" id="photoContainer">
                 <div class="photoPersonWrapper" >
-                  <img id="cardPhoto" src="./assets/images/noImageAvailable.png" alt="Foto" style="display: block;">
+                  <img id="cardPhoto" src="./client/assets/images/noImageAvailable.png" alt="Foto" style="display: block;">
                 </div>
             </div>               
     
