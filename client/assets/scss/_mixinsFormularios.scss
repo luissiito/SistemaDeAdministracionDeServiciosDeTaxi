@@ -1,36 +1,44 @@
-@mixin pantallas1024x768{
-    @media (min-width: 600px) and (max-width: 1360px){
+@mixin formularios {
+    @media (min-width: 600px) and (max-width: 1360px) {
         .form-group {
             padding: 0.1em;
         }
+
         .form-group * {
             font-size: 1em;
         }
     }
-    @media (min-width: 601px) and (max-width: 1024px){
+
+    @media (min-width: 601px) and (max-width: 1024px) {
         .form-group {
             padding: 0.1em;
         }
+
         .form-group * {
             font-size: 0.8em;
         }
     }
+
     @media (max-width: 600px) {
         .form-grid {
             display: block;
         }
+
         .form-group {
             padding: 0.1em;
         }
+
         .form-group * {
             font-size: 0.9em;
         }
     }
+
     @media (max-width: 400px) {
         .form-group {
             display: block;
         }
-        .form-group *{
+
+        .form-group * {
             width: 100%;
             display: block;
         }

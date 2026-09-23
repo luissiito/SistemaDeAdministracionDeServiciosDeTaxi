@@ -1,4 +1,4 @@
-@use 'mixins';
+@use 'mixinsFormularios';
 
 $alturaInputs: 2em;
 
@@ -71,5 +71,5 @@ $alturaInputs: 2em;
         cursor: pointer;
     }
     
-    @include mixins.pantallas1024x768;
+    @include mixinsFormularios.formularios;
 }

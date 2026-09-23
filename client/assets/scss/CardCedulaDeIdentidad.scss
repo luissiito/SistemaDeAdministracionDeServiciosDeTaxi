@@ -1,3 +1,5 @@
+@use 'mixinsCredenciales';
+
 $azul-claro: #eef5fc;
 $azul-cedula: #0f2c59;
 $texto-oscuro: #1a1a1a;
@@ -227,5 +229,6 @@ $naranjo: orange;
         border-radius: 4px;
         font-size: 13px;
     }
+    @include mixinsCredenciales.credenciales;
 
 }
